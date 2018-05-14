@@ -12,22 +12,22 @@ I make no promises over the quality or up-to-date-ness of the code.
 # Contents
 
 ## Extra Hotkeys (EditorShortcutHotkeys.cs)
-**Alt+D** in the Editor to deselect all gameobjects in the scene.  
+**Alt+D** in the Editor to deselect all game objects in the scene.  
 **F5** to Play/Stop the game.  
 
 ## Mascot Panel (MascotPanel.cs)
 A panel for the Editor that displays an image.  
-Access from the **Windows** menu.  
+Access from the **Windows/Mascot** menu.  
 Name your image "mascot" and place it in the folder "**Assets/Editor Default Resources/**".  
-Supports .jpg, .png and static .gif.  
-<img src="Doc/Images/Mascot.png" width="208" />
+Supports .jpg, .png and static .gif. Though you can easily add more formats.  
+![StickyNotes screenshot](Doc/Images/Mascot.png)
 
 ## Revert to Prefab (RevertAllPrefabs.cs)
-Reverts all the selected gameobjects in the Editor back to their prefab state.
+Reverts all the selected gameobjects in the Editor back to their prefab state.  
 Found in the **Tools** menu.
 
 ## Sticky Notes (StickyNote.cs and the Gizmos folder)  
 In-Scene view sticky notes represented with gizmos. Useful for long-term or team projects.  
 Just add the **WakabaGames/StickyNote component** onto any gameobject.  
-Add it onto an empty (child) gameoject if you want to move it around. Prefab included.  
+Add it onto an empty (child) game object if you want to move it around.  
 ![StickyNotes screenshot](Doc/Images/StickyNote.png)
