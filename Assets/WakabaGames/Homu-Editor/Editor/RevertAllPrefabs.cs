@@ -19,8 +19,11 @@ namespace WakabaGames.Editor
 
             if (selection.Length > 0)
             {
+                Undo.SetCurrentGroupName("Revert to Prefab");
+
                 for (int i = 0; i < selection.Length; i++)
                 {
+                    Undo.RecordObject(selection[i], "Revert to Prefab");
                     PrefabUtility.RevertPrefabInstance(selection[i]);
                 }
             }
