@@ -11,7 +11,7 @@ using System;
 
 namespace WakabaGames.Editor
 {
-    public class EditorShortCutKeys : ScriptableObject
+    public class EditorHotkeys : ScriptableObject
     {
         // F5 to Play (and exit playmode)
         [MenuItem("Edit/Play _F5", false, 10001)] 
