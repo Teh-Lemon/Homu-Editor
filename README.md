@@ -15,7 +15,7 @@ I make no promises over the quality or up-to-date-ness of the code.
 **Alt+D** in the Editor to deselect all game objects in the scene.  
 **F5** to Play/Stop the game.  
 
-## Mascot Panel (MascotPanel.cs)
+## Mascot Panel (MascotPanel.cs and the Editor Default Resources folder)
 A panel for the Editor that displays an image.  
 Access from the **Windows/Mascot** menu.  
 Name your image "mascot" and place it in the folder "**Assets/Editor Default Resources/**".  
