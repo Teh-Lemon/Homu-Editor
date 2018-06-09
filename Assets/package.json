@@ -1,0 +1,12 @@
+{
+    "name": "com.wakabagames.homu-editor",
+    "displayName": "Homu-Editor",
+    "version": "0.3.0",
+    "unity": "2018.1",
+    "description": "Collection of utilities for the Unity Editor.",
+    "keywords": [
+        "editor",
+        "unity"
+    ],
+    "category": "Editor"
+}
