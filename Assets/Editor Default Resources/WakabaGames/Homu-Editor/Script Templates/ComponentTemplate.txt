@@ -1,0 +1,10 @@
+﻿// Created by #AUTHOR# on #DATE#
+using Unity.Mathematics;
+using UnityEngine;
+
+namespace #NAMESPACE#
+{
+	public class #FILENAME# : MonoBehaviour 
+	{
+	}
+}

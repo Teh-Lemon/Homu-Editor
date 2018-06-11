@@ -2,7 +2,7 @@
 Collection of utilities for the Unity Editor.  
 
 [MIT License](LICENSE)  
-You may use these freely provided you give credit to "Teh Lemon".  
+You may use these freely provided you give credit to "Teh Lemon" and include a copy of the above license.  
 I make no promises over the quality or up-to-date-ness of the code. Nor will I provide support or take any responsibility if something goes wrong.  
 
 # Install
@@ -19,14 +19,13 @@ Any extra instructions will listed in the comments at the top of the file or fun
 **Alt+D** in the Editor to deselect all game objects in the scene.  
 **F5** to Play/Stop the game.  
 
-## Generate Scripts from Template (ScriptGenerator.cs and the Editor Default Resources folder)
-Create new scripts based on the template provided in the Editor Default Resources folder.  
+## Generate Scripts from Templates (ScriptGenerator.cs and the Editor Default Resources folder)
+Create new scripts based on the templates provided in the Editor Default Resources folder.  
 Use this if you're tired of Unity constantly overwriting your custom script templates every update.  
-Found in the **Create/Wakaba Games/New Script** menu when you right-click in the Project hierarchy.  
-Keywords and customization can be found inside ScriptGenerator.cs file.
+Instructions and customizations can be found inside ScriptGenerator.cs file.
 
 ## Mascot Panel (MascotPanel.cs and the Editor Default Resources folder)
-A panel for the Editor that displays an image for that boost in motivation.  
+A panel for the Editor that displays an image for that needed boost in motivation.  
 Access from the **Windows/Mascot** menu.  
 Name your image "mascot" and place it in the folder "**Assets/Editor Default Resources/**".  
 Supports .jpg, .png and static .gif. Though you can easily add more formats into MascotPanel.cs yourself. 

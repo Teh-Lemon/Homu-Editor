@@ -1,42 +1,132 @@
 // Created by Teh Lemon on 2018/06/09
-// Creates new scripts based on the script template found in...
-// "Assets/Editor Default Resources/WakabaGames/Homu-Editor/Script Templates/ScriptTemplate.txt"
-// Use by right-clicking your project view and navigating to Create/WakabaGames/New Script
-// The following keywords can be used in the templates:
-// #AUTHOR#, #DATE#, #NAMESPACE_OPEN#, #NAMESPACE_END#, #FILENAME#
-// You can customize the author and namespace by editing the constants below
-// Maybe don't commit the template to the repo if working in a team
 
-using UnityEngine;
-using UnityEditor;
+// Creates new scripts based on your script templates
+// Use by right-clicking your project view and navigating to Create/[MENU_ITEM_PATH]
+
+// The following keywords can be used in the templates by default:
+// It's easy to add more, check out the CreateScript function.
+// #AUTHOR#, #DATE#, #NAMESPACE#, #FILENAME#
+
+// Customize your author and namespace
+// Set where you've saving your templates. These have to be in Assets/Editor Default Resources.
+// Add a string for each of your templates and assign the template filename to them.
+// Create the right click menus. Make sure they assign the template filename to WhichTemplateToMake and calls CreateEditorWindow().
+// Customize CreateScript() as you see fit
+
 using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 namespace WakabaGames
 {
     public class ScriptGenerator : EditorWindow
     {
-        // Customize these
+        //////
+        #region Customize these
         const string AUTHOR = "Teh Lemon";
         const string NAMESPACE = "WakabaGames";
+
+        // The path to your templates relative to the "Assets/Editor Default Resources/" folder        
+        const string TEMPLATE_PATH = "WakabaGames/Homu-Editor/Script Templates/";
+
+        // Your templates and their filenames. Don't forget the file extension.
+        const string TEMPLATE_COMPONENT = "ComponentTemplate.txt";
+        const string TEMPLATE_SYSTEM = "SystemTemplate.txt";
+
+        // Generate the script contents and creates the file. Customize as you see fit.
+        void CreateScript(string filename)
+        {
+            // Load the text from the template
+            string scriptText = LoadTemplate(WhichTemplateToCreate);
+
+            // Replace placeholders in the script text. Customize this as you wish
+            scriptText = scriptText.Replace("#AUTHOR#", AUTHOR);
+            scriptText = scriptText.Replace("#DATE#", System.DateTime.Today.ToString("yyyy/MM/dd"));
+            scriptText = scriptText.Replace("#NAMESPACE#", NAMESPACE);
+            scriptText = scriptText.Replace("#FILENAME#", filename);
+
+            // I want my component templates to always be named  [the class] + "Component"
+            //filename = (WhichTemplateToCreate == TEMPLATE_COMPONENT) ? $"{filename}Component" : filename;
+
+            // Create the script file
+            WriteFile(filename, scriptText);
+            // Remove this if you don't want Unity importing and recompiling immediately afterwards
+            ImportAndReload();
+        }
+
+        // Create your right-click menus for each of your templates
+        // The function names don't matter.
+        [MenuItem("Assets/Create/Wakaba Games/Component Script")]
+        static void CreateComponentScript()
+        {
+            WhichTemplateToCreate = TEMPLATE_COMPONENT;
+            ShowInputFilenameWindow();
+        }
+
+        [MenuItem("Assets/Create/Wakaba Games/System Script")]
+        static void CreateSystemScript()
+        {
+            WhichTemplateToCreate = TEMPLATE_SYSTEM;
+            ShowInputFilenameWindow();
+        }
+        #endregion
+        //////
+
+        //////
+        /// You can ignore all this
+        #region Backend
+        static string WhichTemplateToCreate;
+
+        string LoadTemplate(string templateFilename)
+        {
+            // Add the trailing slash if the user forgets it
+            string path = TEMPLATE_PATH.EndsWith("/") ? TEMPLATE_PATH : TEMPLATE_PATH + "/";
+            // Load DefaultTemplate.txt from the folder...
+            // "Editor Default Resources/TEMPLATE_PATH"
+            TextAsset template = EditorGUIUtility.Load($"{path}{templateFilename}") as TextAsset;
+            return template.text;
+        }
+
+        void WriteFile(string filename, string text)
+        {
+            // Where to create the file
+            var path = AssetDatabase.GetAssetPath(Selection.activeObject);
+            if (File.Exists(path))
+            {
+                path = Path.GetDirectoryName(path);
+            }
+            if (string.IsNullOrEmpty(path))
+            {
+                path = "Assets/";
+            }
+
+            // Create the file
+            using(StreamWriter sw = File.CreateText(Path.Combine(path, $"{filename}.cs")))
+            {
+                sw.Write(text);
+            }
+        }
+
+        void ImportAndReload()
+        {
+            // Import scripts into Unity
+            AssetDatabase.Refresh();
+        }
 
         // Editor Window
         const string INPUT_LABEL = "Filename: ";
         string Filename = "NewScript";
         static bool Focused = false; // Used to focus on the text field
-
-        // Show the filename user prompt window
-        [MenuItem("Assets/Create/Wakaba Games/New Script")]
-        static void ShowCreateScriptWindow()
+        static void ShowInputFilenameWindow()
         {
             ScriptGenerator window = ScriptableObject.CreateInstance(typeof(ScriptGenerator)) as ScriptGenerator;
 
             window.minSize = new Vector2(225, 65);
-            window.maxSize = new Vector2(1000, 65);            
+            window.maxSize = new Vector2(1000, 65);
             Focused = false;
 
-            window.ShowUtility();            
+            window.ShowUtility();
         }
-
         // Draw the window the the menu item is clicked
         void OnGUI()
         {
@@ -53,66 +143,26 @@ namespace WakabaGames
             }
 
             // Buttons
-            if (GUILayout.Button("Create"))
-            {   
-                CreateScript(Filename);
-                Close();
-            }
-            if (GUILayout.Button("Cancel"))
-            {
-                Close();
-            }
-
-            // Keyboard enter
-            if (Event.current.isKey && (Event.current.keyCode == KeyCode.Return || Event.current.keyCode == KeyCode.KeypadEnter))
+            if (GUILayout.Button("Create") || KeebEnter)
             {
                 CreateScript(Filename);
                 Close();
             }
+            if (GUILayout.Button("Cancel") || KeebEscape)
+            {
+                Close();
+            }
         }
 
-        // Create the file
-        void CreateScript(string filename)
-        {            
-            // Load DefaultTemplate.txt from the folder...
-            // "Editor Default Resources/WakabaGames/Homu-Editor/Script Templates"
-            TextAsset script = EditorGUIUtility.Load("WakabaGames/Homu-Editor/Script Templates/ScriptTemplate.txt") as TextAsset;
-            string newScript = script.text;
-
-            // Replace placeholders in the script text
-            newScript = newScript.Replace("#AUTHOR#", AUTHOR);            
-            newScript = newScript.Replace("#DATE#", System.DateTime.Today.ToString("yyyy/MM/dd"));
-            newScript = newScript.Replace("#FILENAME#", filename);
-            if (NAMESPACE.Length > 0)
-            {
-                newScript = newScript.Replace("#NAMESPACE_OPEN#", $"namespace {NAMESPACE}\n{{");
-                newScript = newScript.Replace("#NAMESPACE_END#", "}");
-            }
-            else
-            {
-                newScript = newScript.Replace("#NAMESPACE_OPEN#", "");
-                newScript = newScript.Replace("#NAMESPACE_END#", "");
-            }
-
-            // Where to create the file
-            var path = AssetDatabase.GetAssetPath(Selection.activeObject);
-            if (File.Exists(path))
-            {
-                path = Path.GetDirectoryName(path);
-            }
-            if (string.IsNullOrEmpty(path))
-            {
-                path = "Assets/";
-            }
-
-            // Create the file
-            using (StreamWriter sw = File.CreateText(Path.Combine(path, $"{filename}.cs")))
-            {
-                sw.Write(newScript);
-            }
-
-            // Import scripts into Unity
-            AssetDatabase.Refresh();
+        bool KeebEnter
+        {
+            get { return Event.current.isKey && (Event.current.keyCode == KeyCode.Return || Event.current.keyCode == KeyCode.KeypadEnter); }
         }
+        bool KeebEscape
+        {
+            get { return Event.current.isKey && Event.current.keyCode == KeyCode.Escape; }
+        }
+        #endregion
+        //////
     }
 }

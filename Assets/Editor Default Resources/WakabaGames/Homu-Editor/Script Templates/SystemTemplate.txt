@@ -1,0 +1,26 @@
+﻿// Created by #AUTHOR# on #DATE#
+using Unity.Entities;
+using Unity.Mathematics;
+using UnityEngine;
+using UnityEngine.Assertions;
+
+namespace #NAMESPACE#
+{
+	public class #FILENAME# : MonoBehaviour 
+	{
+	}
+
+	class #FILENAME#System : ComponentSystem
+    {
+        struct Components
+        {
+        }
+
+        protected override void OnUpdate ()
+        {
+            foreach (var entity in GetEntities<Components> ())
+            {
+            }
+        }
+    }
+}
