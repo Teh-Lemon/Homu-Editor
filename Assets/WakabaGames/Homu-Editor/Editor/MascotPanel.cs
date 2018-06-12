@@ -1,9 +1,10 @@
-﻿// Creates a panel in the Unity Editor that displays an image
+﻿// Created by Teh Lemon
+// Creates a panel in the Unity Editor that displays an image
 
-// Image needs to be called "mascot" and placed in "Assets/Editor Default Resources/WakabaGames/Homu-Editor/"
-// Image needs to be png, jpg or gif. You can add more below if you need them but it has to be a Unity supported format.
+// Image and material needs to be called "mascot" and placed in "Assets/Editor Default Resources/WakabaGames/Homu-Editor/"
+// You can customize this by editing the constants below
 
-// Material needs to be called "mascot" and placed in "Assets/Editor Default Resources/WakabaGames/Homu-Editor/"
+// Your image file can be any type supported by Unity's texture importer
 // The material isn't needed (though you'll get a warning when you first open the window) 
 // but the default material does not support transparencies
 
@@ -15,32 +16,43 @@ namespace WakabaGames.Editor
 {
     public class MascotPanel : EditorWindow
     {
-        static Texture2D m_texture;
-        static Material m_mat;
+        // Where you're storing the mascot image file. This path needs to be in Assets/Editor Default Resources
+        // Don't forget the trailing slash
+        const string IMAGE_PATH = "WakabaGames/Homu-Editor/Mascot/";
+        // The filename of your mascot image file without the file extensions
+        const string IMAGE_FILENAME = "mascot";
+        // Same for the texture's material
+        const string MATERIAL_PATH = "WakabaGames/Homu-Editor/Mascot/";
+        const string MATERIAL_FILENAME = "mascot";
 
-        [MenuItem ( "Window/Mascot ")]
+        // Holds the loaded image
+        static Texture2D m_texture;
+        // The material used to draw the image. Unity will use a default one if not specified but the default doesn't support transparencies.
+        static Material m_mat;
+        // All the supported file types by the Unity texture importer
+        static string[] fileTypes = new string[] { "jpg", "png", "gif", "bmp", "exr", "hdr", "iff", "pict", "psd", "tga", "tiff" };
+
+        // Adds the button to Unity Editor's Window menu
+        [MenuItem ( "Window/Mascot")]
         static void Open()
         {
             EditorWindow.GetWindow<MascotPanel>("Mascot");
             
             // Load the mascot image from the "Assets/Editor Default Resources/WakabaGames/Homu-Editor/" folder
-            m_texture = EditorGUIUtility.Load("WakabaGames/Homu-Editor/mascot.jpg") as Texture2D;
-            // try png if jpg isn't found
-            if (m_texture == null)
+            // Try all the supported filetypes until the right one is found
+            for (int i = 0; i < fileTypes.Length; i++)
             {
-                m_texture = EditorGUIUtility.Load("WakabaGames/Homu-Editor/mascot.png") as Texture2D;
+                m_texture = EditorGUIUtility.Load($"{IMAGE_PATH}{IMAGE_FILENAME}.{fileTypes[i]}") as Texture2D;
+                if (m_texture != null)
+                {
+                    break;
+                }
             }
-            // try gif if png isn't found either
-            if ( m_texture == null )
-            {
-                m_texture = EditorGUIUtility.Load("WakabaGames/Homu-Editor/mascot.gif") as Texture2D;
-            }
-
-            Assert.IsNotNull(m_texture, "Mascot Panel: Editor Default Resources/WakabaGames/Homu-Editor/mascot.jpg/png/gif image not found");
+            Assert.IsNotNull(m_texture, $"Mascot Panel: Editor Default Resources/{IMAGE_PATH}{IMAGE_FILENAME} image not found or is not a supported file type.");
 
             // Load the mascot material
-            m_mat = EditorGUIUtility.Load("WakabaGames/Homu-Editor/mascot.mat") as Material;
-            Assert.IsNotNull(m_mat, "Mascot Panel: Editor Default Resources/WakabaGames/Homu-Editor/mascot.mat material not found");
+            m_mat = EditorGUIUtility.Load($"{MATERIAL_PATH}{MATERIAL_FILENAME}.mat") as Material;
+            Assert.IsNotNull(m_mat, $"Mascot Panel: Editor Default Resources/{MATERIAL_PATH}{MATERIAL_FILENAME}.mat material not found");
         }
 
         void OnGUI()

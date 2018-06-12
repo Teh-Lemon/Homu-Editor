@@ -27,8 +27,8 @@ Instructions and customizations can be found inside ScriptGenerator.cs file.
 ## Mascot Panel (MascotPanel.cs and the Editor Default Resources folder)
 A panel for the Editor that displays an image for that needed boost in motivation.  
 Access from the **Windows/Mascot** menu.  
-Name your image "mascot" and place it in the folder "**Assets/Editor Default Resources/**".  
-Supports .jpg, .png and static .gif. Though you can easily add more formats into MascotPanel.cs yourself. 
+Name your image "mascot" and place it in the folder "**Assets/Editor Default Resources/Mascot**".  
+You can customize the path and filename in the file.  
 ![Mascot screenshot](Doc/Images/Mascot.png)
 
 ## Revert to Prefab (RevertAllPrefabs.cs)

@@ -17,7 +17,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace WakabaGames
+namespace WakabaGames.Editor
 {
     public class ScriptGenerator : EditorWindow
     {
