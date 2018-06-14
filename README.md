@@ -37,7 +37,7 @@ Found in the **Tools** menu.
 
 ## Simulate Physics (SimulatePhysicsEditor.cs)
 Manually simulates the physics on selected game objects in the editor until they've come to rest.  
-Use this to scatter a bunch of objects around the scene in a natural way without having to carefully place each one on the ground.  
+Use this to scatter a bunch of objects around the scene in a natural way without having to carefully place each one on the ground by hand.  
 Only select game objects that have colliders but no rigidbodies. It will automatically add the rigidbodies and remove them afterwards.  
 Found in the **Tools** menu.
 
