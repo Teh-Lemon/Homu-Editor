@@ -1,10 +1,14 @@
 ﻿// Created by #AUTHOR# on #DATE#
+using Unity.Entities;
+using Unity.Entities.Serialization;
 using Unity.Mathematics;
 using UnityEngine;
 
 namespace #NAMESPACE#
 {
-	public class #FILENAME# : MonoBehaviour 
-	{
-	}
+    public struct #FILENAME# : IComponentData
+    {        
+    }    
+    [DisallowMultipleComponent]
+    public class #FILENAME#Wrapper : ComponentDataWrapper<#FILENAME#> {}
 }

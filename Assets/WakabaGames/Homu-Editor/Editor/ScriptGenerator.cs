@@ -31,7 +31,7 @@ namespace WakabaGames.Editor
 
         // Your templates and their filenames. Don't forget the file extension.
         const string TEMPLATE_COMPONENT = "ComponentTemplate.txt";
-        const string TEMPLATE_SYSTEM = "SystemTemplate.txt";
+        const string TEMPLATE_EMPTY = "EmptyTemplate.txt";
 
         // Generate the script contents and creates the file. Customize as you see fit.
         void CreateScript(string filename)
@@ -45,8 +45,8 @@ namespace WakabaGames.Editor
             scriptText = scriptText.Replace("#NAMESPACE#", NAMESPACE);
             scriptText = scriptText.Replace("#FILENAME#", filename);
 
-            // I want my component templates to always be named  [the class] + "Component"
-            //filename = (WhichTemplateToCreate == TEMPLATE_COMPONENT) ? $"{filename}Component" : filename;
+            // I want my component templates to always be named  [the class] + "Wrapper"
+            filename = (WhichTemplateToCreate == TEMPLATE_COMPONENT) ? $"{filename}Wrapper" : filename;
 
             // Create the script file
             WriteFile(filename, scriptText);
@@ -56,17 +56,17 @@ namespace WakabaGames.Editor
 
         // Create your right-click menus for each of your templates
         // The function names don't matter.
+        [MenuItem("Assets/Create/Wakaba Games/Empty Script")]
+        static void CreateEmptyScript()
+        {
+            WhichTemplateToCreate = TEMPLATE_EMPTY;
+            ShowInputFilenameWindow();
+        }
+        
         [MenuItem("Assets/Create/Wakaba Games/Component Script")]
         static void CreateComponentScript()
         {
             WhichTemplateToCreate = TEMPLATE_COMPONENT;
-            ShowInputFilenameWindow();
-        }
-
-        [MenuItem("Assets/Create/Wakaba Games/System Script")]
-        static void CreateSystemScript()
-        {
-            WhichTemplateToCreate = TEMPLATE_SYSTEM;
             ShowInputFilenameWindow();
         }
         #endregion
