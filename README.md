@@ -47,3 +47,7 @@ In-Scene view sticky notes represented with gizmos. Useful for long-term or team
 Just add the **WakabaGames/StickyNote component** onto any gameobject.  
 Add it onto an empty (child) game object if you want to move it around.  
 ![StickyNotes screenshot](Doc/Images/StickyNote.png)
+
+# Homu Suite
+
+Also consider checking out the other packages in the [Homu Suite](https://github.com/search?q=Teh-Lemon%2FHomu) for Unity.
