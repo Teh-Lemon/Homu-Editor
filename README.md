@@ -19,10 +19,10 @@ Any extra instructions will listed in the comments at the top of the files or fu
 **Alt+D** in the Editor to deselect all game objects in the scene.  
 **F5** to Play/Stop the game.  
 
-## Game View Tracking (ToggleGameViewTracking.cs)
- This keeps the main camera synced with the scene view while enabled.  
-Useful when testing visual effects that only show up in game view.  
+## Game View Tracker (ToggleGameViewTracking.cs)
 Modified version of the one from Unity's Book of the Dead.  
+This keeps the main camera synced with the scene view while enabled.  
+Useful when testing visual effects that only show up in game view.  
 Found in the **Tools** menu or use **ctrl+T**.
 
 ## Generate Scripts from Templates (ScriptGenerator.cs and the Editor Default Resources folder)
