@@ -6,12 +6,12 @@ You may use these freely provided you give credit to "Teh Lemon" and include a c
 I make no promises over the quality or up-to-date-ness of the code. Nor will I provide support or take any responsibility if something goes wrong.  
 
 # Install
-Copy the contents of the Assets folder into your Assets folder.  
+Copy the contents of the Assets folder into your project's Assets folder.  
 Anything in the Assets/WakabaGames folder can be moved as you wish but any scripts found in an "Editor" folder must also be in a folder named Editor.  
-The "Gizmos" and "Editor Default Resources" must be placed in the root of the "Assets" folder. These can't be moved.  
+The "Gizmos" and "Editor Default Resources" folders must be placed in the root of your project's "Assets" folder. These can't be moved.  
 Some of these may require setting Unity to use .net 4.6/C# 6.0.  
 These are only tested against whichever Unity version I happen to be using (usually the latest).  
-Any extra instructions will listed in the comments at the top of the file or functions.  
+Any extra instructions will listed in the comments at the top of the files or functions.  
 
 # Contents
 
