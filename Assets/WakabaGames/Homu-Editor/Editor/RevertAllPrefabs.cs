@@ -12,7 +12,7 @@ namespace WakabaGames.Editor
 {
     public class RevertAllPrefabsEditor
     {
-        [MenuItem("Tools/Revert to Prefab")]
+        [MenuItem("Tools/Revert to Prefab", priority = 1080)]
         static void Revert()
         {
             var selection = Selection.gameObjects;

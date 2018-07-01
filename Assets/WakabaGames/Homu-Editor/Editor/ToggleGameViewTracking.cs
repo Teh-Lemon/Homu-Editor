@@ -19,7 +19,7 @@ namespace WakabaGames
             return true;
         }
 
-        [MenuItem(k_MenuName, priority = 1050)]
+        [MenuItem(k_MenuName, priority = 1080)] // BookOfDead used 1050
         public static void ToggleGameViewTracking()
         {
             SetEnabled(!s_Enabled);

@@ -19,7 +19,7 @@ namespace WakabaGames.Editor
 
 
         #region GUI
-        [MenuItem("Tools/Simulate Physics")]
+        [MenuItem("Tools/Simulate Physics", priority = 1080)]
         public static void ShowWindow()
         {
             EditorWindow window = EditorWindow.GetWindow(typeof(SimulatePhysicsEditor));
