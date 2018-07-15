@@ -8,7 +8,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace WakabaGames
+namespace WakabaGames.Editor
 {
     public static class GameViewTracker
     {
