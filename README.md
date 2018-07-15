@@ -3,7 +3,7 @@ Collection of utilities for the Unity Editor.
 
 [MIT License](LICENSE)  
 You may use these freely provided you give credit to "Teh Lemon" and include a copy of the above license.  
-I make no promises over the quality or up-to-date-ness of the code. Nor will I provide support or take any responsibility if something goes wrong.  
+I make no promises over the quality or up-to-date-ness of the code.
 
 # Install
 Copy the contents of the Assets folder into your project's Assets folder.  
