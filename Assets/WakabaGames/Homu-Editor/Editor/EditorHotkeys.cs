@@ -14,7 +14,7 @@ namespace WakabaGames.Editor
     public class EditorHotkeys : ScriptableObject
     {
         // F5 to Play (and exit playmode)
-        [MenuItem("Edit/Play _F5", false, 10001)] 
+        [MenuItem("Edit/Play Game _F5", false, 10001)] 
         static void PlayGame()
         {
             if (!Application.isPlaying)
