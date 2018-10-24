@@ -23,8 +23,13 @@ namespace WakabaGames.Editor
 
                 for (int i = 0; i < selection.Length; i++)
                 {
+                    if (!PrefabUtility.IsPartOfAnyPrefab(selection[i]))
+                    {
+                        break;
+                    }
+
                     Undo.RecordObject(selection[i], "Revert to Prefab");
-                    PrefabUtility.RevertPrefabInstance(selection[i]);
+                    PrefabUtility.RevertPrefabInstance(selection[i], InteractionMode.UserAction);
                 }
             }
             else
