@@ -51,7 +51,7 @@ Found in the **Tools** menu.
 ## Sticky Notes (StickyNote.cs and the Gizmos folder)  
 In-Scene view sticky notes represented with gizmos. Useful for long-term or team projects.  
 Just add the **WakabaGames/StickyNote component** onto any gameobject.  
-Add it onto an empty (child) game object if you want to move it around.  
+Add it onto an empty game object if you want to move it around.  
 ![StickyNotes screenshot](Doc/Images/StickyNote.png)
 
 # Homu Suite
